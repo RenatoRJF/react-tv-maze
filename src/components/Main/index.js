@@ -1,5 +1,6 @@
 import React from "react";
 import "./main.scss";
+import { Link } from "react-router-dom";
 
 function App() {
   const shows = [
@@ -49,10 +50,10 @@ function App() {
 
       <div className="shows__list">
         {shows.map((show) => (
-          <div className="shows__card" key={show.id}>
+          <Link key={show.id} to={`/show/${show.id}`} className="shows__card">
             <img src={show.image} alt="show" />
             <h4>{show.title}</h4>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
