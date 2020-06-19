@@ -7,6 +7,11 @@
     box-sizing: border-box;
     display: flex;
     align-items: center;
+    text-decoration: none;
+
+    &.active {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
 
     &:not(:last-child) {
       border-bottom: 1px solid rgba(255, 255, 255, 0.2);
@@ -14,6 +19,7 @@
 
     .image {
       width: 100px;
+      min-width: 100px;
       height: 70px;
       display: flex;
       justify-content: center;
@@ -28,7 +34,9 @@
 
     h4 {
       color: $white;
-      margin-left: 20px;
+      padding-left: 20px;
+      box-sizing: border-box;
+      // max-width: calc(100% - 100px);
     }
   }
 }
