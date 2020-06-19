@@ -1,0 +1,33 @@
+@import "../../styles/variables.scss";
+
+.episode__details {
+  color: $white;
+
+  .episode__image {
+    padding: 0;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.5);
+
+    img {
+      height: 100%;
+    }
+  }
+
+  .episode__title {
+    color: inherit;
+    font-size: 18px;
+    padding: 20px 20px 0px;
+    box-sizing: border-box;
+    margin: 0;
+  }
+
+  .episode__description {
+    color: inherit;
+    padding: 0 20px 20px;
+    margin: 0;
+    font-size: 14px;
+  }
+}
