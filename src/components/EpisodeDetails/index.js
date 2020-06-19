@@ -29,14 +29,16 @@ export function EpisodeDetails({ getEpisode, episode }) {
               )}
             </div>
 
-            <h1 className="episode__title">{name}</h1>
+            <div className="episode__summary">
+              <h1 className="episode__title">{name}</h1>
 
-            <SanitizedHTML
-              className="episode__description"
-              allowedAttributes={{ a: ["href"] }}
-              allowedTags={["a", "p", "em", "i", "strong", "span"]}
-              html={summary || "No description"}
-            />
+              <SanitizedHTML
+                className="episode__description"
+                allowedAttributes={{ a: ["href"] }}
+                allowedTags={["a", "p", "em", "i", "strong", "span"]}
+                html={summary || "No description"}
+              />
+            </div>
           </>
         )}
       </div>
