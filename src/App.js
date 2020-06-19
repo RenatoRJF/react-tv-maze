@@ -9,10 +9,13 @@ export default function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/show/:showId/season/:seasonNumber">
+        <Route path="/show/:showId/season/:seasonNumber" exact>
           <ShowDetails />
         </Route>
-        <Route path="/episode/:id">
+        <Route
+          path="/show/:showId/season/:seasonNumber/episode/:episodeNumber"
+          exact
+        >
           <EpisodeDetails />
         </Route>
         <Route path="/">
