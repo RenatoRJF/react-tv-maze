@@ -1,46 +1,79 @@
 @import "../../styles/variables.scss";
 
-.main__header {
-  background-color: $cobalt;
-  position: fixed;
-  z-index: 100;
-  width: 100%;
-  top: 0;
-  height: 80px;
+.main {
+  min-width: $minWidth;
+  max-width: $maxWidth;
+  margin: 0 auto;
 
-  h1 {
-    background-color: rgba(255, 255, 255, 0.2);
-    text-align: center;
-    color: $white;
-    font-weight: 300;
-    line-height: 80px;
-    margin: 0;
-    font-size: 25px;
-  }
-}
+  .main__header {
+    background-color: $cobalt;
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    top: 0;
+    left: 0;
+    margin: 0 auto;
+    height: 80px;
 
-.shows__list {
-  display: flex;
-  flex-wrap: wrap;
-  box-sizing: border-box;
-  margin-top: 90px;
-  padding: 0 10px;
-
-  .shows__card {
-    box-sizing: border-box;
-    padding: 10px;
-    width: 50%;
-
-    img {
-      display: block;
-      min-height: 200px;
-      width: 100%;
-    }
-
-    h4 {
-      margin: 10px 0;
-      font-size: 14px;
+    h1 {
+      background-color: rgba(255, 255, 255, 0.2);
+      text-align: center;
       color: $white;
+      font-weight: 300;
+      line-height: 80px;
+      margin: 0;
+      font-size: 25px;
+    }
+  }
+
+  .shows__list {
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    padding: 0 10px;
+    max-width: 1200px;
+    margin: 90px auto 0;
+
+    .shows__card {
+      box-sizing: border-box;
+      padding: 10px;
+      width: 50%;
+      text-decoration: none;
+      opacity: 0.9;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      img {
+        display: block;
+        min-height: 200px;
+        width: 100%;
+      }
+
+      h4 {
+        margin: 10px 0;
+        font-size: 14px;
+        color: $white;
+      }
+    }
+  }
+
+  @media screen and (min-width: 576px) {
+    .shows__list .shows__card {
+      width: calc(100% / 3);
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    .shows__list .shows__card {
+      width: calc(100% / 4);
+    }
+  }
+
+  @media screen and (min-width: 922px) {
+    .shows__list .shows__card {
+      width: calc(100% / 6);
     }
   }
 }
