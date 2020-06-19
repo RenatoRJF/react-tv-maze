@@ -24,23 +24,25 @@ export function ShowDetails({ getShow, show }) {
               <img src={image?.original} alt="show" />
             </div>
 
-            <h1 className="show__title">{name}</h1>
+            <div className="details__summary">
+              <h1 className="show__title">{name}</h1>
 
-            <SanitizedHTML
-              className="show__description"
-              allowedAttributes={{ a: ["href"] }}
-              allowedTags={["a", "p", "em", "i", "strong", "span"]}
-              html={summary}
-            />
+              <SanitizedHTML
+                className="show__description"
+                allowedAttributes={{ a: ["href"] }}
+                allowedTags={["a", "p", "em", "i", "strong", "span"]}
+                html={summary}
+              />
 
-            <span className="show__type">
-              <strong>Type:</strong> {type}
-            </span>
+              <span className="show__type">
+                <strong>Type:</strong> {type}
+              </span>
 
-            <span className="show__genres">
-              <strong>Genres:</strong>
-              {genres && genres.join(", ")}
-            </span>
+              <span className="show__genres">
+                <strong>Genres:</strong>
+                {genres && genres.join(", ")}
+              </span>
+            </div>
           </>
         )}
       </div>

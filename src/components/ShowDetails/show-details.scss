@@ -2,6 +2,9 @@
 
 .show__details {
   color: $white;
+  min-width: $minWidth;
+  max-width: $maxWidth;
+  margin: 0 auto;
 
   .show__image {
     padding: 10px 0;
@@ -45,5 +48,35 @@
 
   .show__genres {
     padding-bottom: 20px;
+  }
+
+  @media screen and (min-width: 768px) {
+    padding: 50px 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .show__image {
+      max-width: 400px;
+      height: 300px;
+      margin-right: 10px;
+      background-color: transparent;
+    }
+
+    .show__title {
+      font-size: 32px;
+    }
+
+    .show__description,
+    .show__type,
+    .show__genres {
+      font-size: 16px;
+    }
+  }
+
+  @media screen and (min-width: 922px) {
+    .shows__list .shows__card {
+      width: calc(100% / 6);
+    }
   }
 }
