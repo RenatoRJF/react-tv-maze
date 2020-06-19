@@ -1,6 +1,11 @@
 import api from "../../services/api";
 
-import { LOAD_SHOWS, LOAD_CURRENT_SHOW } from "../types/shows";
+import {
+  LOAD_SHOWS,
+  LOAD_CURRENT_SHOW,
+  LOAD_SEASONS,
+  LOAD_EPISODES,
+} from "../types/shows";
 import showsData from "../../services/mock-shows";
 
 export function loadShows(payload) {
@@ -13,6 +18,20 @@ export function loadShows(payload) {
 export function loadCurrentShow(payload) {
   return {
     type: LOAD_CURRENT_SHOW,
+    payload,
+  };
+}
+
+export function loadSeasons(payload) {
+  return {
+    type: LOAD_SEASONS,
+    payload,
+  };
+}
+
+export function loadEpisodes(payload) {
+  return {
+    type: LOAD_EPISODES,
     payload,
   };
 }
@@ -34,6 +53,35 @@ export function getCurrentShow(showId) {
       const { name, id, image, summary, type, genres } = data;
 
       dispatch(loadCurrentShow({ id, name, image, summary, type, genres }));
+    });
+  };
+}
+
+export function getSeasons(showId) {
+  return (dispatch) => {
+    return api.get(`shows/${showId}/seasons`).then(({ data }) => {
+      const seasons = data.map(({ id, number }) => ({ id, number }));
+
+      dispatch(loadSeasons(seasons));
+    });
+  };
+}
+
+export function getEpisodes(seasonId, seasonNumber) {
+  return (dispatch) => {
+    return api.get(`seasons/${seasonId}/episodes`).then(({ data }) => {
+      const episodes = data.map(
+        ({ id, name, number, image, summary, season }) => ({
+          id,
+          name,
+          number,
+          image,
+          summary,
+          season,
+        })
+      );
+
+      dispatch(loadEpisodes({ [seasonNumber]: episodes }));
     });
   };
 }

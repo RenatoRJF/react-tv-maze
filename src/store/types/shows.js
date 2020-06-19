@@ -1,2 +1,4 @@
 export const LOAD_SHOWS = "LOAD_SHOWS";
 export const LOAD_CURRENT_SHOW = "LOAD_CURRENT_SHOW";
+export const LOAD_SEASONS = "LOAD_SEASONS";
+export const LOAD_EPISODES = "LOAD_EPISODES";

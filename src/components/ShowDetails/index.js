@@ -8,12 +8,12 @@ import Layout from "../Layout";
 import "./show-details.scss";
 
 export function ShowDetails({ getShow, show }) {
-  const { id } = useParams();
+  const { showId } = useParams();
   const { image, name, summary, type, genres } = show || {};
 
   useEffect(() => {
-    getShow(id);
-  }, [id, getShow]);
+    getShow(showId);
+  }, [showId, getShow]);
 
   return (
     <Layout>

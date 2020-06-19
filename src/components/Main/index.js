@@ -18,7 +18,11 @@ function App({ loadShows, shows = [] }) {
 
       <div className="shows__list">
         {shows.map((show) => (
-          <Link key={show.id} to={`/show/${show.id}`} className="shows__card">
+          <Link
+            key={show.id}
+            to={`/show/${show.id}/season/1`}
+            className="shows__card"
+          >
             <img src={show.image} alt="show" />
             <h4>{show.title}</h4>
           </Link>

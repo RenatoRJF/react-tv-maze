@@ -9,7 +9,7 @@ export default function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/show/:id">
+        <Route path="/show/:showId/season/:seasonNumber">
           <ShowDetails />
         </Route>
         <Route path="/episode/:id">
