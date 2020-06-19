@@ -5,6 +5,7 @@ import {
   LOAD_CURRENT_SHOW,
   LOAD_SEASONS,
   LOAD_EPISODES,
+  SET_CURRENT_EPISODE,
 } from "../types/shows";
 import showsData from "../../services/mock-shows";
 
@@ -32,6 +33,13 @@ export function loadSeasons(payload) {
 export function loadEpisodes(payload) {
   return {
     type: LOAD_EPISODES,
+    payload,
+  };
+}
+
+export function setCurrentEpisode(payload) {
+  return {
+    type: SET_CURRENT_EPISODE,
     payload,
   };
 }
@@ -81,7 +89,23 @@ export function getEpisodes(seasonId, seasonNumber) {
         })
       );
 
-      dispatch(loadEpisodes({ [seasonNumber]: episodes }));
+      dispatch(loadEpisodes({ key: seasonNumber, data: episodes }));
     });
+  };
+}
+
+export function getEpisodeByNumber(showId, seasonNumber, episodeNumber) {
+  return (dispatch) => {
+    return api
+      .get(
+        `shows/${showId}/episodebynumber?season=${seasonNumber}&number=${episodeNumber}`
+      )
+      .then(({ data }) => {
+        const { id, name, image, number, season, summary } = data;
+
+        dispatch(
+          setCurrentEpisode({ id, name, image, number, season, summary })
+        );
+      });
   };
 }
