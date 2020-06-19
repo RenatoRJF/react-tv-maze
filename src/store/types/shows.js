@@ -1,1 +1,2 @@
 export const LOAD_SHOWS = "LOAD_SHOWS";
+export const LOAD_CURRENT_SHOW = "LOAD_CURRENT_SHOW";
