@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 
@@ -12,40 +12,61 @@ export function Layout({
   episodes,
   loadSeasons,
   loadEpisodes,
+  setSeason,
 }) {
   const { showId, seasonNumber } = useParams();
-  const [selectedSeason, setSelectedSeason] = useState(1);
+  const [currentSeason, setCurrentSeason] = useState(Number(seasonNumber));
 
-  useEffect(() => {
-    (async () => {
-      if (seasons.length === 0) {
-        await loadSeasons(showId);
-      }
+  useEffect(
+    function handleLoadSeasons() {
+      (async () => {
+        if (seasons?.length === 0) {
+          await loadSeasons(showId);
+        }
+      })();
+    },
+    [loadSeasons, seasons, showId]
+  );
 
-      const season = seasons.find(
-        (season) => season.number === Number(seasonNumber)
-      );
+  useEffect(
+    function handleLoadEpisodes() {
+      (async () => {
+        const season = seasons.find(
+          (season) => season.number === Number(currentSeason)
+        );
 
-      if (!episodes[selectedSeason] && season) {
-        loadEpisodes(season.id, seasonNumber);
-      }
-    })();
-  }, [
-    episodes,
-    loadEpisodes,
-    loadSeasons,
-    seasonNumber,
-    seasons,
-    selectedSeason,
-    showId,
-  ]);
+        if (!episodes[currentSeason] && season) {
+          await loadEpisodes(season.id, currentSeason);
+        }
+      })();
+    },
+    [currentSeason, episodes, loadEpisodes, seasons, setSeason]
+  );
+
+  const handleChangeSeason = useCallback(
+    (seasonId, seasonNum) => {
+      (async () => {
+        setCurrentSeason(seasonNum);
+
+        if (!episodes[seasonNum]) {
+          await loadEpisodes(seasonId, seasonNum);
+        }
+      })();
+    },
+    [episodes, loadEpisodes]
+  );
 
   return (
     <div className="layout">
       {children}
 
-      <Seasons data={seasons} selectedSeason={selectedSeason} />
-      <EpisodesList episodes={episodes[selectedSeason]} />
+      <Seasons
+        data={seasons}
+        selectedSeason={currentSeason}
+        onSelectSeason={handleChangeSeason}
+      />
+
+      <EpisodesList episodes={episodes[currentSeason]} />
     </div>
   );
 }
@@ -54,14 +75,16 @@ const mapStateToProps = (state) => {
   return {
     seasons: state.seasons,
     episodes: state.episodes,
+    currentSeason: state.currentSeason,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     loadSeasons: (id) => dispatch(getSeasons(id)),
-    loadEpisodes: (seasonId, seasonNumber) =>
-      dispatch(getEpisodes(seasonId, seasonNumber)),
+    loadEpisodes: (seasonId, seasonNumber) => {
+      return dispatch(getEpisodes(seasonId, seasonNumber));
+    },
   };
 };
 
