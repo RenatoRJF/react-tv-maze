@@ -19,6 +19,8 @@ export default function EpisodesList({ episodes, isLoading }) {
             isActive = Number(episodeNumber) === number;
           }
 
+          if (number === null) return null;
+
           return (
             <Link
               className={`episode ${isActive ? "active" : ""}`}
