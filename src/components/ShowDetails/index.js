@@ -5,6 +5,7 @@ import SanitizedHTML from "react-sanitized-html";
 
 import { getCurrentShow } from "../../store/actions/shows";
 import Layout from "../Layout";
+import Breadcrumb from "../Breadcrumb";
 import "./show-details.scss";
 
 export function ShowDetails({ getShow, show }) {
@@ -18,6 +19,8 @@ export function ShowDetails({ getShow, show }) {
   return (
     <Layout>
       <div className="show__details">
+        <Breadcrumb routes={[{ name: "Home", path: "/" }]} />
+
         {show && (
           <>
             <div className="show__image">
