@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 
 import Seasons from "../Seasons";
 import EpisodesList from "../EpisodesList";
+import Loader from "../Loader";
 import { getSeasons, getEpisodes } from "../../store/actions/shows";
 
 export function Layout({
@@ -13,6 +14,7 @@ export function Layout({
   loadSeasons,
   loadEpisodes,
   setSeason,
+  isLoading,
 }) {
   const { showId, seasonNumber } = useParams();
   const [currentSeason, setCurrentSeason] = useState(Number(seasonNumber));
@@ -68,7 +70,11 @@ export function Layout({
         onSelectSeason={handleChangeSeason}
       />
 
-      <EpisodesList episodes={episodes[`${currentSeason}${showId}`]} />
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <EpisodesList episodes={episodes[`${currentSeason}${showId}`]} />
+      )}
     </div>
   );
 }
@@ -78,6 +84,7 @@ const mapStateToProps = (state) => {
     seasons: state.seasons,
     episodes: state.episodes,
     currentSeason: state.currentSeason,
+    isLoading: state.loader.episodes,
   };
 };
 

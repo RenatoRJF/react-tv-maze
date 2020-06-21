@@ -89,6 +89,8 @@ export function getSeasons(showId) {
 
 export function getEpisodes(seasonId, seasonNumber, showId) {
   return (dispatch) => {
+    dispatch(setLoader("episodes", true));
+
     return api.get(`seasons/${seasonId}/episodes`).then(({ data }) => {
       const episodes = data.map(
         ({ id, name, number, image, summary, season }) => ({
@@ -100,6 +102,8 @@ export function getEpisodes(seasonId, seasonNumber, showId) {
           season,
         })
       );
+
+      dispatch(setLoader("episodes", false));
 
       dispatch(
         loadEpisodes({ key: `${seasonNumber}${showId}`, data: episodes })

@@ -14,7 +14,9 @@
     background-color: rgba(255, 255, 255, 0.5);
 
     img {
-      width: 100%;
+      width: auto;
+      height: 240px;
+      max-width: 100%;
     }
   }
 
@@ -42,7 +44,6 @@
     .episode__image {
       width: 100%;
       max-width: 400px;
-      // height: 300px;
       margin-right: 10px;
       background-color: transparent;
     }
