@@ -30,14 +30,14 @@ export function EpisodeDetails({ getEpisode, episode }) {
           routes={[
             { name: "Home", path: "/" },
             {
-              name: "Show page",
+              name: "Show",
               path: `/show/${showId}/season/${seasonNumber}`,
             },
           ]}
         />
 
         {episode && (
-          <>
+          <div className="content">
             <div className="episode__image">
               {!image ? (
                 <img src={DefaultImage} alt="episode" />
@@ -56,7 +56,7 @@ export function EpisodeDetails({ getEpisode, episode }) {
                 html={summary || "No description"}
               />
             </div>
-          </>
+          </div>
         )}
       </div>
     </Layout>

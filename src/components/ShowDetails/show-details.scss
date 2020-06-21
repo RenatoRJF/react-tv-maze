@@ -51,10 +51,12 @@
   }
 
   @media screen and (min-width: 768px) {
-    padding: 50px 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    .content {
+      padding: 50px 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
     .show__image {
       max-width: 400px;

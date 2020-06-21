@@ -22,7 +22,7 @@ export function ShowDetails({ getShow, show }) {
         <Breadcrumb routes={[{ name: "Home", path: "/" }]} />
 
         {show && (
-          <>
+          <div className="content">
             <div className="show__image">
               <img src={image?.original} alt="show" />
             </div>
@@ -46,7 +46,7 @@ export function ShowDetails({ getShow, show }) {
                 {genres && genres.join(", ")}
               </span>
             </div>
-          </>
+          </div>
         )}
       </div>
     </Layout>

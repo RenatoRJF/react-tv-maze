@@ -15,7 +15,7 @@
 
     img {
       width: auto;
-      height: 240px;
+      max-height: 250px;
       max-width: 100%;
     }
   }
@@ -36,16 +36,22 @@
   }
 
   @media screen and (min-width: 768px) {
-    padding: 50px 100px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    .content {
+      padding: 50px 100px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
 
     .episode__image {
       width: 100%;
       max-width: 400px;
       margin-right: 10px;
       background-color: transparent;
+
+      img {
+        min-width: 250px;
+      }
     }
 
     .episode__title {
