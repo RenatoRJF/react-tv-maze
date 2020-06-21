@@ -8,8 +8,10 @@ import Loader from "../Loader";
 
 function App({ loadShows, shows = [], isLoading }) {
   useEffect(() => {
-    loadShows();
-  }, [loadShows]);
+    if (shows.length === 0) {
+      loadShows();
+    }
+  }, [loadShows, shows.length]);
 
   return (
     <div className="main">
