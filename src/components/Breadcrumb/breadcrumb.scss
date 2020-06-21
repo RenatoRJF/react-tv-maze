@@ -4,9 +4,10 @@
   height: 50px;
   display: flex;
   align-items: center;
-  padding-left: 20px;
+  padding-left: 10px;
 
   a {
     color: $white;
+    margin: 0 10px;
   }
 }

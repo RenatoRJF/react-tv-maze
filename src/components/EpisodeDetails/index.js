@@ -5,6 +5,7 @@ import SanitizedHTML from "react-sanitized-html";
 
 import { getEpisodeByNumber } from "../../store/actions/shows";
 import Layout from "../Layout";
+import Breadcrumb from "../Breadcrumb";
 import DefaultImage from "../../images/default.jpg";
 import "./episode-details.scss";
 
@@ -19,6 +20,16 @@ export function EpisodeDetails({ getEpisode, episode }) {
   return (
     <Layout>
       <div className="episode__details">
+        <Breadcrumb
+          routes={[
+            { name: "Home", path: "/" },
+            {
+              name: "Show page",
+              path: `/show/${showId}/season/${seasonNumber}`,
+            },
+          ]}
+        />
+
         {episode && (
           <>
             <div className="episode__image">
