@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./seasons.scss";
 
 export default function Seasons({ data, selectedSeason, onSelectSeason }) {
@@ -21,3 +22,14 @@ export default function Seasons({ data, selectedSeason, onSelectSeason }) {
     </div>
   );
 }
+
+Seasons.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      number: PropTypes.number,
+    })
+  ).isRequired,
+  selectedSeason: PropTypes.number.isRequired,
+  onSelectSeason: PropTypes.func.isRequired,
+};

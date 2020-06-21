@@ -64,7 +64,7 @@ export function Layout({
       {children}
 
       <Seasons
-        data={seasons[showId]}
+        data={seasons[showId] || []}
         selectedSeason={currentSeason}
         onSelectSeason={handleChangeSeason}
       />
