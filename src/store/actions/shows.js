@@ -103,7 +103,7 @@ export function getEpisodes(seasonId, seasonNumber, showId) {
         })
       );
 
-      dispatch(setLoader("episodes", true));
+      dispatch(setLoader("episodes", false));
 
       dispatch(
         loadEpisodes({ key: `${seasonNumber}${showId}`, data: episodes })

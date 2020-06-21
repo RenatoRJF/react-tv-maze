@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { connect } from "react-redux";
+import { useParams, useLocation } from "react-router-dom";
 import SanitizedHTML from "react-sanitized-html";
+import { animateScroll as scroll } from "react-scroll";
+import { connect } from "react-redux";
 
 import { getEpisodeByNumber } from "../../store/actions/shows";
 import Layout from "../Layout";
@@ -11,7 +12,12 @@ import "./episode-details.scss";
 
 export function EpisodeDetails({ getEpisode, episode }) {
   const { showId, seasonNumber, episodeNumber } = useParams();
+  const { pathname } = useLocation();
   const { image, name, summary } = episode || {};
+
+  useEffect(() => {
+    scroll.scrollToTop();
+  }, [pathname]);
 
   useEffect(() => {
     getEpisode(showId, seasonNumber, episodeNumber);
