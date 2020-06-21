@@ -6,12 +6,6 @@ const showsData = [
       "https://static.tvmaze.com/uploads/images/medium_portrait/60/151357.jpg",
   },
   {
-    id: 2102,
-    title: "Dragon Ball",
-    image:
-      "https://static.tvmaze.com/uploads/images/medium_portrait/11/29189.jpg",
-  },
-  {
     id: 590,
     title: "Pokémon",
     image:
@@ -24,16 +18,22 @@ const showsData = [
       "https://static.tvmaze.com/uploads/images/medium_portrait/79/199224.jpg",
   },
   {
-    id: 672,
-    title: "Phineas and Ferb",
+    id: 13,
+    title: "Flash",
     image:
-      "https://static.tvmaze.com/uploads/images/medium_portrait/5/14778.jpg",
+      "https://static.tvmaze.com/uploads/images/medium_portrait/210/527217.jpg",
   },
   {
-    id: 13822,
-    title: "Stitch!",
+    id: 6,
+    title: "The 100",
     image:
-      "https://static.tvmaze.com/uploads/images/medium_portrait/47/118712.jpg",
+      "https://static.tvmaze.com/uploads/images/medium_portrait/257/642675.jpg",
+  },
+  {
+    id: 25110,
+    title: "Condor",
+    image:
+      "https://static.tvmaze.com/uploads/images/medium_portrait/261/652984.jpg",
   },
 ];
 
