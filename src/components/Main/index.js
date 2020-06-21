@@ -16,7 +16,7 @@ function App({ loadShows, shows = [], isLoading }) {
   return (
     <div className="main">
       <header className="main__header">
-        <h1>shows</h1>
+        <h1>Shows</h1>
       </header>
 
       <div className="shows__list">
