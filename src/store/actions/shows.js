@@ -6,6 +6,7 @@ import {
   LOAD_SEASONS,
   LOAD_EPISODES,
   SET_CURRENT_EPISODE,
+  SET_LOADER,
 } from "../types/shows";
 import showsData from "../../services/mock-shows";
 
@@ -44,11 +45,22 @@ export function setCurrentEpisode(payload) {
   };
 }
 
+export function setLoader(key, payload) {
+  return {
+    type: SET_LOADER,
+    key,
+    payload,
+  };
+}
+
 export function fetchShows() {
   return (dispatch) => {
+    dispatch(setLoader("shows", true));
+
     return new Promise((resolve) => {
       setTimeout(() => {
         dispatch(loadShows(showsData));
+        dispatch(setLoader("shows", false));
         resolve();
       }, 1000);
     });

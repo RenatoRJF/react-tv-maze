@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 import { fetchShows } from "../../store/actions/shows";
 
 import "./main.scss";
+import Loader from "../Loader";
 
-function App({ loadShows, shows = [] }) {
+function App({ loadShows, shows = [], isLoading }) {
   useEffect(() => {
     loadShows();
   }, [loadShows]);
@@ -17,6 +18,8 @@ function App({ loadShows, shows = [] }) {
       </header>
 
       <div className="shows__list">
+        {isLoading && <Loader />}
+
         {shows.map((show) => (
           <Link
             key={show.id}
@@ -35,6 +38,7 @@ function App({ loadShows, shows = [] }) {
 const mapStateToProps = (state) => {
   return {
     shows: state.shows,
+    isLoading: state.loader.shows,
   };
 };
 

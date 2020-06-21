@@ -4,6 +4,7 @@ import {
   LOAD_SEASONS,
   LOAD_EPISODES,
   SET_CURRENT_EPISODE,
+  SET_LOADER,
 } from "../types/shows";
 
 const initialState = {
@@ -12,6 +13,10 @@ const initialState = {
   seasons: {},
   episodes: {},
   currentEpisode: null,
+  loader: {
+    shows: false,
+    episodes: false,
+  },
 };
 
 export default function reducer(state = initialState, action) {
@@ -42,6 +47,12 @@ export default function reducer(state = initialState, action) {
 
     case SET_CURRENT_EPISODE:
       return { ...state, currentEpisode: action.payload };
+
+    case SET_LOADER:
+      return {
+        ...state,
+        loader: { ...state.loader, [action.key]: action.payload },
+      };
 
     default:
       return state;
