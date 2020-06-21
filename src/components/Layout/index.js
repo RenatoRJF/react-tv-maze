@@ -20,7 +20,7 @@ export function Layout({
   useEffect(
     function handleLoadSeasons() {
       (async () => {
-        if (seasons?.length === 0) {
+        if (seasons[showId] === undefined) {
           await loadSeasons(showId);
         }
       })();
@@ -31,16 +31,18 @@ export function Layout({
   useEffect(
     function handleLoadEpisodes() {
       (async () => {
-        const season = seasons.find(
-          (season) => season.number === Number(currentSeason)
-        );
+        const season =
+          Array.isArray(seasons[showId]) &&
+          seasons[showId].find(
+            (season) => season.number === Number(currentSeason)
+          );
 
-        if (!episodes[currentSeason] && season) {
-          await loadEpisodes(season.id, currentSeason);
+        if (episodes[`${currentSeason}${showId}`] === undefined && season) {
+          await loadEpisodes(season.id, currentSeason, showId);
         }
       })();
     },
-    [currentSeason, episodes, loadEpisodes, seasons, setSeason]
+    [currentSeason, episodes, loadEpisodes, seasons, setSeason, showId]
   );
 
   const handleChangeSeason = useCallback(
@@ -48,12 +50,12 @@ export function Layout({
       (async () => {
         setCurrentSeason(seasonNum);
 
-        if (!episodes[seasonNum]) {
-          await loadEpisodes(seasonId, seasonNum);
+        if (episodes[`${seasonNum}${showId}`] === undefined) {
+          await loadEpisodes(seasonId, seasonNum, showId);
         }
       })();
     },
-    [episodes, loadEpisodes]
+    [episodes, loadEpisodes, showId]
   );
 
   return (
@@ -61,12 +63,12 @@ export function Layout({
       {children}
 
       <Seasons
-        data={seasons}
+        data={seasons[showId]}
         selectedSeason={currentSeason}
         onSelectSeason={handleChangeSeason}
       />
 
-      <EpisodesList episodes={episodes[currentSeason]} />
+      <EpisodesList episodes={episodes[`${currentSeason}${showId}`]} />
     </div>
   );
 }
@@ -82,8 +84,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     loadSeasons: (id) => dispatch(getSeasons(id)),
-    loadEpisodes: (seasonId, seasonNumber) => {
-      return dispatch(getEpisodes(seasonId, seasonNumber));
+    loadEpisodes: (seasonId, seasonNumber, showId) => {
+      return dispatch(getEpisodes(seasonId, seasonNumber, showId));
     },
   };
 };

@@ -9,7 +9,7 @@ import {
 const initialState = {
   shows: [],
   currentShow: null,
-  seasons: [],
+  seasons: {},
   episodes: {},
   currentEpisode: null,
 };
@@ -23,7 +23,13 @@ export default function reducer(state = initialState, action) {
       return { ...state, currentShow: action.payload };
 
     case LOAD_SEASONS:
-      return { ...state, seasons: action.payload };
+      return {
+        ...state,
+        seasons: {
+          ...state.seasons,
+          [action.payload.key]: action.payload.data,
+        },
+      };
 
     case LOAD_EPISODES:
       return {

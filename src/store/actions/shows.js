@@ -70,12 +70,12 @@ export function getSeasons(showId) {
     return api.get(`shows/${showId}/seasons`).then(({ data }) => {
       const seasons = data.map(({ id, number }) => ({ id, number }));
 
-      dispatch(loadSeasons(seasons));
+      dispatch(loadSeasons({ key: showId, data: seasons }));
     });
   };
 }
 
-export function getEpisodes(seasonId, seasonNumber) {
+export function getEpisodes(seasonId, seasonNumber, showId) {
   return (dispatch) => {
     return api.get(`seasons/${seasonId}/episodes`).then(({ data }) => {
       const episodes = data.map(
@@ -89,7 +89,9 @@ export function getEpisodes(seasonId, seasonNumber) {
         })
       );
 
-      dispatch(loadEpisodes({ key: seasonNumber, data: episodes }));
+      dispatch(
+        loadEpisodes({ key: `${seasonNumber}${showId}`, data: episodes })
+      );
     });
   };
 }
