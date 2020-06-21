@@ -4,6 +4,8 @@
   min-width: $minWidth;
   max-width: $maxWidth;
   margin: 0 auto;
+  position: relative;
+  min-height: 100px;
 
   .episode {
     padding: 10px;

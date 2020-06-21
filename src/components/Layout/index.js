@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 
 import Seasons from "../Seasons";
 import EpisodesList from "../EpisodesList";
-import Loader from "../Loader";
 import { getSeasons, getEpisodes } from "../../store/actions/shows";
 
 export function Layout({
@@ -70,11 +69,10 @@ export function Layout({
         onSelectSeason={handleChangeSeason}
       />
 
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <EpisodesList episodes={episodes[`${currentSeason}${showId}`]} />
-      )}
+      <EpisodesList
+        episodes={episodes[`${currentSeason}${showId}`]}
+        isLoading={isLoading}
+      />
     </div>
   );
 }

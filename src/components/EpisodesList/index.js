@@ -2,12 +2,15 @@ import React from "react";
 import "./episodes-list.scss";
 import { Link, useParams } from "react-router-dom";
 import DefaultImage from "../../images/default.jpg";
+import Loader from "../Loader";
 
-export default function EpisodesList({ episodes }) {
+export default function EpisodesList({ episodes, isLoading }) {
   const { showId, episodeNumber, seasonNumber } = useParams();
 
   return (
     <div className="episodes__list">
+      {isLoading && <Loader />}
+
       {Array.isArray(episodes) &&
         episodes.map(({ id, image, name, number, season }) => {
           let isActive = number === 1;
