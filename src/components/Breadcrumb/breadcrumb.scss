@@ -1,0 +1,12 @@
+@import "../../styles/variables.scss";
+
+.breadcrumb {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+
+  a {
+    color: $white;
+  }
+}
